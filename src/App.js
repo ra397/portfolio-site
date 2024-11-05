@@ -1,23 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+// App.js
+import React from "react";
+import ProjectCarousel from "./ProjectCarousel";
+import "./App.css";
+import "./ProjectCarousel.css"
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <header className="hero-section">
+        <h1>Hello, I'm Rabi Alaya</h1>
+        <p>Aspiring Software Engineer</p>
       </header>
+      
+      <section id="about" className="about-section">
+        <h2>About Me</h2>
+        <p>I'm a computer science student with a passion for developing efficient and scalable software solutions...</p>
+      </section>
+      
+      <section id="projects" className="projects-section">
+        <h2>Projects</h2>
+        <ProjectCarousel ></ProjectCarousel>
+      </section>
+
+      <section id="contact" className="contact-section">
+        <h2>Contact Me</h2>
+        <form>
+          <input type="text" placeholder="Your Name" />
+          <input type="email" placeholder="Your Email" />
+          <textarea placeholder="Your Message"></textarea>
+          <button type="submit">Send Message</button>
+        </form>
+      </section>
     </div>
   );
 }
