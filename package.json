@@ -19,7 +19,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "homepage": "https://your-username.github.io/your-repo-name",
+  "homepage": "https://ra397.github.io/portfolio-site",
   "eslintConfig": {
     "extends": [
       "react-app",
