@@ -20,7 +20,7 @@ function Navigation({ isHidden, onNavClick }) {
       <a href="#about" className="nav-link" onClick={onNavClick}>About Me</a>
       <a href="#projects" className="nav-link" onClick={onNavClick}>Projects</a>
       <a href="#contact" className="nav-link" onClick={onNavClick}>Contact</a>
-      <a href="/Rabi_Alaya_Resume.pdf" className="nav-link" target="_blank" rel="noopener noreferrer">Resume</a>
+      <a href={`${process.env.PUBLIC_URL}/Rabi_Alaya_Resume.pdf`} className="nav-link" target="_blank" rel="noopener noreferrer">Resume</a>
     </div>
   );
 }
