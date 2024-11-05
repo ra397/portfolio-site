@@ -3,14 +3,12 @@ import React from "react";
 import ProjectCarousel from "./ProjectCarousel";
 import "./App.css";
 import "./ProjectCarousel.css"
+import Cover from "./Cover";
 
 function App() {
   return (
     <div className="App">
-      <header className="hero-section">
-        <h1>Hello, I'm Rabi Alaya</h1>
-        <p>Aspiring Software Engineer</p>
-      </header>
+      <Cover></Cover>
       
       <section id="about" className="about-section">
         <h2>About Me</h2>
