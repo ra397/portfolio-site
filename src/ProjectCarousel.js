@@ -14,6 +14,12 @@ const projects = [
     imageUrl: "/Etch-a-Sketch-preview.png",
     previewLink: "https://ra397.github.io/sketch/",
   },
+  {
+    title: "STAT:2020 Visualization Tool",
+    description: "An interactive Python tool for visualizing probability distributions, built with Tkinter and Matplotlib to aid students in understanding statistics.",
+    imageUrl: "https://github.com/ra397/STAT2020-Tool/raw/main/Screenshot%20(4).png",
+    previewLink: "https://github.com/ra397/STAT2020-Tool",
+  }
   // Add more projects as needed
 ];
 

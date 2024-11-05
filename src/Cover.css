@@ -44,7 +44,7 @@
   right: 0;
   display: flex;
   justify-content: center;
-  gap: 40px;
+  gap: 10px;
   transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
@@ -59,6 +59,12 @@
   font-size: 1rem;
   font-weight: 300;
   position: relative;
+  padding: 0 15px;
+}
+
+/* Add divider lines between nav items */
+.nav-link:not(:last-child) {
+  border-right: 1px solid #040404; /* Vertical divider */
 }
 
 .nav-link::after {
@@ -67,7 +73,8 @@
   width: 0;
   height: 2px;
   background: black;
-  transition: width .3s;
+  transition: width 0.3s;
+  margin-top: 5px;
 }
 
 .nav-link:hover::after {
