@@ -3,6 +3,9 @@ import "./App.css";
 import Cover from "./Cover";
 import About from "./About";
 import ProjectCarousel from "./ProjectCarousel";
+import Contact from "./Contact";
+
+
 function App() {
   const [isHidden, setIsHidden] = useState(false);
   const [isNavigating, setIsNavigating] = useState(false);
@@ -35,6 +38,7 @@ function App() {
         <ProjectCarousel/>
       </section>
 
+      <Contact />
     </div>
   );
 }
