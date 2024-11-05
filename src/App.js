@@ -1,34 +1,40 @@
-// App.js
-import React from "react";
-import ProjectCarousel from "./ProjectCarousel";
+import React, { useState, useEffect, useCallback } from "react";
 import "./App.css";
-import "./ProjectCarousel.css"
 import Cover from "./Cover";
-
+import About from "./About";
+import ProjectCarousel from "./ProjectCarousel";
 function App() {
+  const [isHidden, setIsHidden] = useState(false);
+  const [isNavigating, setIsNavigating] = useState(false);
+
+  // Optimized scroll handler using useCallback
+  const handleScroll = useCallback(() => {
+    if (!isNavigating) {
+      setIsHidden(window.scrollY > 0);
+    } else if (window.scrollY === 0) {
+      setIsHidden(false);
+    }
+  }, [isNavigating]);
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [handleScroll]);
+
+  const handleNavClick = () => {
+    setIsNavigating(true);
+    setTimeout(() => setIsNavigating(false), 500);
+  };
+
   return (
     <div className="App">
-      <Cover></Cover>
-      
-      <section id="about" className="about-section">
-        <h2>About Me</h2>
-        <p>I'm a computer science student with a passion for developing efficient and scalable software solutions...</p>
-      </section>
-      
-      <section id="projects" className="projects-section">
+      <Cover isHidden={isHidden} onNavClick={handleNavClick} />
+      <About />
+      <section id="projects" className="content-section">
         <h2>Projects</h2>
-        <ProjectCarousel ></ProjectCarousel>
+        <ProjectCarousel/>
       </section>
 
-      <section id="contact" className="contact-section">
-        <h2>Contact Me</h2>
-        <form>
-          <input type="text" placeholder="Your Name" />
-          <input type="email" placeholder="Your Email" />
-          <textarea placeholder="Your Message"></textarea>
-          <button type="submit">Send Message</button>
-        </form>
-      </section>
     </div>
   );
 }

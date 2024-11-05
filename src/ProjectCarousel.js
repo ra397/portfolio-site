@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./ProjectCarousel.css";
 
 const projects = [
   {
