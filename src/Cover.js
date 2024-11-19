@@ -6,8 +6,8 @@ function Cover({ isHidden, onNavClick }) {
     <section id="hero" className="hero-section">
       <h2>Hello, it’s nice to meet you...</h2>
       <div className="hero-content">
-        <h1>I AM RABI ALAYA</h1>
-        <p className="subtitle">Software Engineer</p>
+        <h1>MY NAME IS RABI ALAYA</h1>
+        <p className="subtitle">Software Developer</p>
       </div>
       <Navigation isHidden={isHidden} onNavClick={onNavClick} />
     </section>
