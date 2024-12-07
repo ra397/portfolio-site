@@ -6,6 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <!-- Using Font Awesome for icons in contact section -->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+        <!-- Using Swiper for project carousel -->
+        <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+        <link rel="stylesheet" href="styles.css" />
         <title>Rabi Alaya</title>
     </head>
     <body>
@@ -16,8 +20,7 @@
 
         <div id="navbar">
             <ul>
-                <li><a href="#projects-section">Projects</a></li>
-                <li><a href="#blog-section">Blog</a></li>
+                <li><a href="blog.html">Blog</a></li>
                 <li>
                     <a href="assets/Rabi_Alaya_Resume.pdf" target="_blank">Resume</a>
                 </li>
@@ -27,10 +30,50 @@
         <div id="about-section">
             <h2>About Me</h2>
             <p>
-                I am a senior studying Computer Science and Engineering. I'm passionate about building custom software solutions that 
+                I am a senior studying Computer Science and Engineering at the University of Iowa. I'm passionate about building custom software solutions that 
                 drive businesses and research forward. What I love most about computer science is how easy it is to apply what I've learned—anytime, 
                 anywhere. Just open a laptop and start coding. This freedom to experiment is the root of my passion for software development.
             </p>
+        </div>
+
+        <div id="projects-section">
+            <h2>Projects</h2>
+            <div class="swiper-container">
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-wrapper">
+                    <!-- Project 1 -->
+                    <div class="swiper-slide project-card">
+                        <img src="project1-thumbnail.jpg" alt="Project 1 Thumbnail">
+                        <h3>Project Name 1</h3>
+                        <p>Short description about the project.</p>
+                        <a href="https://github.com/yourusername/project1" target="_blank">View on GitHub</a>
+                    </div>
+                    <!-- Project 2 -->
+                    <div class="swiper-slide project-card">
+                        <img src="project2-thumbnail.jpg" alt="Project 2 Thumbnail">
+                        <h3>Project Name 2</h3>
+                        <p>Short description about the project.</p>
+                        <a href="https://github.com/yourusername/project2" target="_blank">View on GitHub</a>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div class="swiper-slide project-card">
+                        <img src="project2-thumbnail.jpg" alt="Project 3 Thumbnail">
+                        <h3>Project Name 2</h3>
+                        <p>Short description about the project.</p>
+                        <a href="https://github.com/yourusername/project2" target="_blank">View on GitHub</a>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div class="swiper-slide project-card">
+                        <img src="project2-thumbnail.jpg" alt="Project 4 Thumbnail">
+                        <h3>Project Name 2</h3>
+                        <p>Short description about the project.</p>
+                        <a href="https://github.com/yourusername/project2" target="_blank">View on GitHub</a>
+                    </div>
+                </div>
+                <div class="swiper-button-next"></div>
+            </div>
         </div>
 
         <div id="contact-section">
@@ -51,5 +94,7 @@
             </div>
         </div>
 
+
+        <script src="swiper.js"></script>
     </body>
 </html>
