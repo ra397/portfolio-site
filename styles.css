@@ -1,7 +1,43 @@
+* {
+    font-family: 'Iceland', serif;
+}
+
+#name-section h1 {
+    margin-bottom: 0px;
+    font-size: 2.5rem;
+}
+
+#name-section h2 {
+    margin-top: 0px;
+    font-size: 1.2rem; /* Make h2 smaller than h1 */
+    color: #484b4e; /* A subtle gray color for fading effect */
+    font-weight: 400; /* Make it lighter than h1 for visual hierarchy */
+}
+
 .swiper-container {
     position: relative;
 }
 
-.swiper-wrapper {
-    margin-left: 44px;
+.project-card {
+    display: flex; /* Optional: Centers content inside the card */
+    flex-direction: column; /* Stacks content vertically */
+    justify-content: center;
+    align-items: center; /* Centers items horizontally */
+    overflow: hidden; /* Ensures no content overflows */
+    width: 100%; /* Adjust width as needed */
+    height: auto; /* Allows dynamic height based on content */
+    box-sizing: border-box; /* Includes padding and border in width/height */
 }
+
+.project-card img {
+    width: 75%; /* Image takes 75% width of the card */
+    height: auto; /* Maintain the aspect ratio */
+    object-fit: cover; /* Ensures the image covers the card */
+    display: block; /* Prevents extra space below the image */
+    border-radius: 8px; /* Optional: Adds rounded corners */
+}
+
+.swiper-button-prev, .swiper-button-next {
+    color: #000;
+}
+  
