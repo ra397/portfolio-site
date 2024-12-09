@@ -1,21 +1,28 @@
 * {
     font-family: 'Iceland', serif;
+    font-size: 1.15rem;
 }
 
 #name-section h1 {
+    margin-top: 0px;
     margin-bottom: 0px;
-    font-size: 2.5rem;
+    font-size: 2.75rem;
 }
 
 #name-section h2 {
     margin-top: 0px;
-    font-size: 1.2rem; /* Make h2 smaller than h1 */
+    font-size: 1.35rem; /* Make h2 smaller than h1 */
     color: #484b4e; /* A subtle gray color for fading effect */
     font-weight: 400; /* Make it lighter than h1 for visual hierarchy */
 }
 
+.section-title {
+    font-size: 1.4rem;
+}
+
 .swiper-container {
     position: relative;
+    overflow: hidden;
 }
 
 .project-card {
@@ -40,4 +47,3 @@
 .swiper-button-prev, .swiper-button-next {
     color: #000;
 }
-  
