@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Complete Guide: Installing and Configuring Python 3 on Windows 11</title>
+    <!-- Using Iceland Google Font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Iceland&display=swap" rel="stylesheet">
+  <style>
+    * {
+    font-family: 'Iceland', serif;
+    }
+    /* Layout and positioning styles only */
+    body {
+      margin: 0;
+      padding: 20px;
+      background: none;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    h1 {
+      margin-bottom: 10px;
+    }
+    .meta {
+      margin-bottom: 20px;
+    }
+    .meta p {
+      margin: 4px 0;
+    }
+    .step {
+      margin-bottom: 0px;
+      padding: 15px;
+      box-sizing: border-box;
+    }
+    .step-header {
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+    ul {
+      margin: 10px 0 0 20px;
+    }
+    code {
+        background-color: #eee;
+        font-family: monospace;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+    }
+    a {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Complete Guide: Installing and Configuring Python 3 on Windows 11</h1>
+    <div class="meta">
+      <p><strong>Author:</strong> Rabi Alaya</p>
+      <p><strong>Last Updated:</strong> February 10, 2025</p>
+    </div>
+    <p>This guide will walk you through installing Python 3 on Windows 11, adding it to PATH, and verifying the installation using PowerShell. By the end, you’ll be able to run Python scripts and check your installation with simple commands.</p>
+    
+    <div class="step">
+      <div class="step-header">Step 1: Download Python 3</div>
+      <p>Open your web browser and go to the official Python website: <a href="https://www.python.org/downloads/" target="_blank">https://www.python.org/downloads/</a></p>
+      <img src="../assets/blog_assets/installing_python3/python-homepage.png" width="450" alt="Python Homepage">
+      <p>Click the “Download Python 3.x.x” button under “Download the latest version for Windows” (this will download the latest stable version).</p>
+    </div>
+    
+    <div class="step">
+      <div class="step-header">Step 2: Install Python 3</div>
+      <p>Open your downloads folder, then double click on the installer “python-3.x.x-amd64.exe”.</p>
+      <p>Once the installer is open:</p>
+      <img src="../assets/blog_assets/installing_python3/python-installer.png" width="450" alt="Python Installer">
+      <ul>
+        <li>Check “Add python.exe to PATH”.</li>
+        <li>Write down the PATH where Python is installed. This is shown under “Install Now”. For example: <code>C:\Users\rabia\AppData\Local\Programs\Python\Python313</code> <em>*Important*</em></li>
+        <li>Click “Install Now”.</li>
+      </ul>
+    </div>
+    
+    <div class="step">
+      <div class="step-header">Step 3: Verify Python Installation in PowerShell</div>
+      <p>Open PowerShell.</p>
+      <p>Run the command <code>python --version</code> or <code>python3 --version</code>.</p>
+      <p>If your output is something like “Python 3.x.x” then Python was installed and configured correctly. You are good to go! 😊</p>
+      <img src="../assets/blog_assets/installing_python3/python-confirmation.png" width="250" alt="Python Version">
+      <p>If your output is something like “Python was not found …” or “Python is not recognized …”, restart your computer and run <code>python --version</code> or <code>python3 --version</code> again. If it still does not work, move on to step 4 :(</p>
+    </div>
+    
+    <div class="step">
+      <div class="step-header">Step 4: Add Python to Environment Variables</div>
+      <p>Open Windows Search and type "Environment Variables", then select "Edit the system environment variables".</p>
+      <img src="../assets/blog_assets/installing_python3/environment-variables-homepage.png" width="300" alt="Environment Variables">
+      <p>Select “Environment Variables” near the bottom of the screen.</p>
+      <img src="../assets/blog_assets/installing_python3/adding-to-path.png" width="300" alt="Environment Variables">
+      <p>Double click “Path” under “User variables for your_username”.</p>
+      <p>Click “New”.</p>
+      <p>Write the PATH you recorded in Step 2, adding a “\Scripts” to the end of it. For example, if your path was <code>C:\Users\rabia\AppData\Local\Programs\Python\Python313</code>, then add: <code>C:\Users\rabia\AppData\Local\Programs\Python\Python313\Scripts</code>.</p>
+      <p>Restart your computer and run <code>python --version</code> or <code>python3 --version</code>.</p>
+    </div>
+  </div>
+  <a href="../blog.html">Back</a>
+</body>
+</html>
