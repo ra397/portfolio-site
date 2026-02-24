@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../styles.css" rel="stylesheet" type="text/css">
+    <link href="styles.css" rel="stylesheet" type="text/css">
+    <title>Rabi Alaya — Resume</title>
+</head>
+<body>
+<div class="page">
+    <div class="header">
+        <div class="site-name"><a href="/">Rabi Alaya</a></div>
+        <nav>
+            <a href="/">About</a>
+            <a href="">Work</a>
+            <a href="/resume">Resume</a>
+        </nav>
+    </div>
+
+    <div class="resume">
+        <!-- Experience -->
+        <div class="section">
+            <div class="section-title">Experience</div>
+
+            <div class="entry">
+                <div class="entry-header">
+                    <div class="entry-title">Software Developer</div>
+                    <div class="entry-sub">Iowa Flood Center, IIHR – University of Iowa · March 2025 – Present</div>
+                </div>
+                <div class="entry-points">
+                    <p>Deployed and maintained 3 geospatial web applications, shipping 2 production cycles per week while incorporating researcher feedback.</p>
+                    <p>Independently gathered requirements from non-technical researchers, translating ambiguous goals into defined specs.</p>
+                    <p>Built reusable, modular UI components adopted across 3 applications, reducing code duplication.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Projects -->
+        <div class="section">
+            <div class="section-title">Projects</div>
+
+            <div class="entry">
+                <div class="entry-header">
+                    <div class="entry-title">NextNEXRAD</div>
+                    <div class="entry-sub">WSR-88D Radar Coverage Analysis Tool · June – September 2025</div>
+                    <div class="entry-tech">JavaScript (Google Maps API), Python (Flask, NumPy, GDAL)</div>
+                    <div class="entry-links"><a href="https://visualriver.net/wsr88/" target="_blank">Demo</a> · <a href="https://github.com/ra397/NextNEXRAD" target="_blank">GitHub</a></div>
+                </div>
+                <div class="entry-points">
+                    <p>Interactive GIS application simulating radar placement and quantifying coverage improvements across USGS basins.</p>
+                    <p>Engineered backend raster processing across 47M+ grid cells per request with sub-4 second response times.</p>
+                </div>
+            </div>
+
+            <div class="entry">
+                <div class="entry-header">
+                    <div class="entry-title">MRMS Browser</div>
+                    <div class="entry-sub">Real-Time Precipitation Viewer · September 2025 – January 2026</div>
+                    <div class="entry-tech">JavaScript (Web Workers, IndexedDB, Google Maps API)</div>
+                    <div class="entry-links"><a href="https://s-iihr80.iihr.uiowa.edu/mrms-browser/" target="_blank">Demo</a> · <a href="https://github.com/ra397/mrms-browser" target="_blank">GitHub</a></div>
+                </div>
+                <div class="entry-points">
+                    <p>Client-side MRMS data viewer accessing 60+ NOAA weather products from S3, rendering animated overlays on Google Maps.</p>
+                    <p>Implemented caching with gzip compression and LUT remapping to avoid per-frame reprojection of ~2.17M grid cells.</p>
+                    <p>Offloaded GRIB2 decoding to Web Workers and OffscreenCanvas for smooth UI during large dataset processing.</p>
+                </div>
+            </div>
+
+            <div class="entry">
+                <div class="entry-header">
+                    <div class="entry-title">Level II Browser</div>
+                    <div class="entry-sub">GPU-Accelerated NEXRAD Data Viewer · January 2026 – Present</div>
+                    <div class="entry-tech">JavaScript (WebGL2, Web Workers, Google Maps API)</div>
+                    <div class="entry-links"><a href="https://s-iihr80.iihr.uiowa.edu/nexrad-l2/" target="_blank">Demo</a> · <a href="https://github.com/ra397/level2-browser" target="_blank">GitHub</a></div>
+                </div>
+                <div class="entry-points">
+                    <p>Client-side NEXRAD Level II decoder handling Bzip2 decompression and binary parsing for all seven radar moments.</p>
+                    <p>WebGL-based polar-to-Mercator projection using custom vertex shaders for smooth pan/zoom rendering.</p>
+                </div>
+            </div>
+
+            <div class="entry">
+                <div class="entry-header">
+                    <div class="entry-title">SmartDart</div>
+                    <div class="entry-sub">Computer-Vision Dart Scoring System · January – May 2025</div>
+                    <div class="entry-tech">Python (OpenCV, Tkinter), Raspberry Pi, Swift/SwiftUI, Firebase</div>
+                    <div class="entry-links"><a href="https://github.com/Nick-Hageman/SmartDart" target="_blank">GitHub</a> · <a href="https://engineering.uiowa.edu/news-all/2024/11/iowa-engineers-win-39500-iowa-innovation-challenge" target="_blank">Featured Article</a></div>
+                </div>
+                <div class="entry-points">
+                    <p>Secured $5,000 in funding at the Iowa Innovation Challenge for a real-time, automated steel-tip dart scoring system.</p>
+                    <p>Fine-tuned YOLOv4-tiny on 3,000+ annotated dart images with Raspberry Pi integration and mobile app sync.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Education -->
+        <div class="section">
+            <div class="section-title">Education</div>
+
+            <div class="entry">
+                <div class="entry-header">
+                    <div class="entry-title">University of Iowa, College of Engineering</div>
+                    <div class="entry-sub">Computer Science and Engineering, Minor in Mathematics · May 2025</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <span class="footer-item"><a href="mailto:rabialaya@gmail.com">rabialaya@gmail.com</a></span>
+        <span class="footer-item"><a target="_blank" rel="noopener noreferrer" href="https://github.com/ra397">GitHub</a></span>
+    </footer>
+</div>
+</body>
+</html>

@@ -10,13 +10,15 @@
     --font: 'Courier Prime', 'Courier New', Courier, monospace;
     --text: #222;
     --bg: #fff;
+    --muted: #666;
+    --rule: #ddd;
 }
 
 body {
     font-family: var(--font), serif;
     color: var(--text);
     background: var(--bg);
-    line-height: 1.55;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
 }
 
@@ -51,6 +53,10 @@ a:hover {
     margin-bottom: 1.8rem;
 }
 
+.site-name a {
+    text-decoration: none;
+}
+
 nav {
     display: flex;
     flex-direction: column;
@@ -62,6 +68,7 @@ nav a {
     width: fit-content;
     font-size: 1rem;
     line-height: 1.5;
+    text-decoration: none;
     transition: opacity 0.2s;
 }
 
@@ -70,47 +77,99 @@ nav a:hover {
 }
 
 /* ==================== */
-/* MAIN CONTENT         */
-/* Bio left, Photo right */
+/* RESUME CONTENT       */
 /* ==================== */
-.main {
+.resume {
     flex: 1;
-    display: flex;
-    align-items: flex-start;
-    padding: 2rem;
-    gap: 1.5rem;
-}
-
-.bio {
-    flex: 1;
-    font-size: 1rem;
-    line-height: 1.65;
-    padding-top: 4rem;
-}
-
-.photo-col {
-    flex-shrink: 0;
-}
-
-.photo-col img {
-    display: block;
     width: 100%;
-    height: auto;
+    max-width: 680px;
+    padding: 4rem 2rem 2rem;
 }
 
-.caption {
-    margin-top: 0.5rem;
+.resume-header {
+    margin-bottom: 3rem;
+}
+
+.resume-name {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+}
+
+.resume-contact {
     font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.6;
+}
+
+/* Section */
+.section {
+    margin-bottom: 2.5rem;
+}
+
+.section-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 1.5rem;
+}
+
+/* Entry (job / project / education) */
+.entry {
+    margin-bottom: 2rem;
+}
+
+.entry:last-child {
+    margin-bottom: 0;
+}
+
+.entry-header {
+    margin-bottom: 0.6rem;
+}
+
+.entry-title {
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.entry-sub {
+    font-size: 0.85rem;
+    color: var(--muted);
     line-height: 1.5;
 }
 
-.caption a {
-    text-decoration: underline;
-    text-underline-offset: 2px;
+.entry-tech {
+    font-size: 0.8rem;
+    font-style: italic;
+    color: var(--muted);
+    margin-top: 0.15rem;
 }
 
-.caption a:hover {
-    opacity: 0.4;
+.entry-links {
+    font-size: 0.8rem;
+    margin-top: 0.15rem;
+}
+
+/* Bullet points as simple paragraphs with a dash */
+.entry-points {
+    margin-top: 0.5rem;
+}
+
+.entry-points p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 0.35rem;
+    padding-left: 1.2rem;
+    text-indent: -1.2rem;
+}
+
+.entry-points p::before {
+    content: "– ";
+    color: var(--muted);
 }
 
 /* ==================== */
@@ -124,7 +183,7 @@ nav a:hover {
     margin-top: auto;
 }
 
-.footer-item {
+.footer-email {
     font-size: 0.85rem;
 }
 
@@ -151,73 +210,38 @@ nav a:hover {
     fill: #666;
 }
 
-/* ======================================= */
-/* MOBILE (<768px)                         */
-/* Two-col: bio left, photo right           */
-/* Photo smaller, caption wraps tight       */
-/* ======================================= */
+/* ==================== */
+/* MOBILE               */
+/* ==================== */
 @media (max-width: 767px) {
     .header {
         padding: 1.5rem 1.5rem 0;
     }
 
-    nav {
-        margin-bottom: 0;
+    .resume {
+        padding: 3rem 1.5rem 1.5rem;
     }
 
-    .main {
-        padding: 5rem 1.5rem 0;
-        align-items: flex-start;
-        gap: 1rem;
-    }
-
-    .bio {
-        padding-top: 0;
-        font-size: 0.92rem;
-        max-width: 55%;
-    }
-
-    .photo-col {
-        width: 40%;
-        padding-top: 1rem;
-    }
-
-    .caption {
-        font-size: 0.78rem;
+    .entry-points p {
+        font-size: 0.85rem;
     }
 
     .footer {
-        padding: 5rem 1.5rem 1.2rem;
+        padding: 3rem 1.5rem 1.2rem;
     }
 }
 
-/* ======================================= */
-/* DESKTOP (>=768px)                       */
-/* Photo top-right, bio center-left         */
-/* ======================================= */
+/* ==================== */
+/* DESKTOP              */
+/* ==================== */
 @media (min-width: 768px) {
     .header {
         padding: 2.5rem 3rem 0;
     }
 
-    .main {
-        padding: 0 3rem;
-        position: relative;
-        min-height: 60vh;
-        align-items: center;
-    }
-
-    .bio {
-        padding-top: 0;
-        max-width: 520px;
-        margin-left: 20%;
-    }
-
-    .photo-col {
-        position: absolute;
-        top: -8rem;
-        right: 3rem;
-        width: 280px;
+    .resume {
+        padding: 5rem 3rem 2rem;
+        margin-left: 12%;
     }
 
     .footer {
@@ -226,13 +250,8 @@ nav a:hover {
 }
 
 @media (min-width: 1100px) {
-    .photo-col {
-        width: 320px;
-    }
-
-    .bio {
-        margin-left: 24%;
-        max-width: 540px;
+    .resume {
+        margin-left: 18%;
     }
 }
 
@@ -241,12 +260,9 @@ nav a:hover {
         padding: 2.5rem 4rem 0;
     }
 
-    .main {
-        padding: 0 4rem;
-    }
-
-    .photo-col {
-        right: 4rem;
+    .resume {
+        padding: 5rem 4rem 2rem;
+        margin-left: 20%;
     }
 
     .footer {
