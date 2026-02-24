@@ -1,49 +1,251 @@
-* {
-    font-family: 'Iceland', serif;
-    font-size: 1.15rem;
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap');
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-#name-section h1 {
-    margin-top: 0px;
-    margin-bottom: 0px;
-    font-size: 2.75rem;
+:root {
+    --font: 'Courier Prime', 'Courier New', Courier, monospace;
+    --text: #222;
+    --bg: #fff;
 }
 
-#name-section h2 {
-    margin-top: 0px;
-    font-size: 1.35rem; /* Make h2 smaller than h1 */
-    color: #484b4e; /* A subtle gray color for fading effect */
-    font-weight: 400; /* Make it lighter than h1 for visual hierarchy */
+body {
+    font-family: var(--font);
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
 }
 
-.section-title {
-    font-size: 1.4rem;
+a {
+    color: inherit;
+    text-decoration: none;
 }
 
-.swiper-container {
-    position: relative;
-    overflow: hidden;
+/* ==================== */
+/* PAGE                 */
+/* ==================== */
+.page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
-.project-card {
-    display: flex; /* Optional: Centers content inside the card */
-    flex-direction: column; /* Stacks content vertically */
+/* ==================== */
+/* HEADER + NAV         */
+/* ==================== */
+.header {
+    padding: 2rem 2rem 0;
+}
+
+.site-name {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 1.8rem;
+}
+
+nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.05rem;
+}
+
+nav a {
+    display: block;
+    width: fit-content;
+    font-size: 1rem;
+    line-height: 1.5;
+    transition: opacity 0.2s;
+}
+
+nav a:hover {
+    opacity: 0.4;
+}
+
+/* ==================== */
+/* MAIN CONTENT         */
+/* Bio left, Photo right */
+/* ==================== */
+.main {
+    flex: 1;
+    display: flex;
+    align-items: flex-start;
+    padding: 2rem;
+    gap: 1.5rem;
+}
+
+.bio {
+    flex: 1;
+    font-size: 1rem;
+    line-height: 1.65;
+    padding-top: 4rem;
+}
+
+.photo-col {
+    flex-shrink: 0;
+}
+
+.photo-col img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.caption {
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    line-height: 1.5;
+}
+
+.caption a {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.caption a:hover {
+    opacity: 0.4;
+}
+
+/* ==================== */
+/* FOOTER               */
+/* ==================== */
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 3rem 2rem 1.5rem;
+    margin-top: auto;
+}
+
+.footer-email {
+    font-size: 0.85rem;
+}
+
+.dots-btn {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+    background: #fafafa;
+    display: flex;
+    align-items: center;
     justify-content: center;
-    align-items: center; /* Centers items horizontally */
-    overflow: hidden; /* Ensures no content overflows */
-    width: 100%; /* Adjust width as needed */
-    height: auto; /* Allows dynamic height based on content */
-    box-sizing: border-box; /* Includes padding and border in width/height */
+    cursor: pointer;
+    transition: background 0.15s;
 }
 
-.project-card img {
-    width: 75%; /* Image takes 75% width of the card */
-    height: auto; /* Maintain the aspect ratio */
-    object-fit: cover; /* Ensures the image covers the card */
-    display: block; /* Prevents extra space below the image */
-    border-radius: 8px; /* Optional: Adds rounded corners */
+.dots-btn:hover {
+    background: #eee;
 }
 
-.swiper-button-prev, .swiper-button-next {
-    color: #000;
+.dots-btn svg {
+    width: 15px;
+    height: 15px;
+    fill: #666;
+}
+
+/* ======================================= */
+/* MOBILE (<768px)                         */
+/* Two-col: bio left, photo right           */
+/* Photo smaller, caption wraps tight       */
+/* ======================================= */
+@media (max-width: 767px) {
+    .header {
+        padding: 1.5rem 1.5rem 0;
+    }
+
+    nav {
+        margin-bottom: 0;
+    }
+
+    .main {
+        padding: 5rem 1.5rem 0;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .bio {
+        padding-top: 0;
+        font-size: 0.92rem;
+        max-width: 55%;
+    }
+
+    .photo-col {
+        width: 40%;
+        padding-top: 1rem;
+    }
+
+    .caption {
+        font-size: 0.78rem;
+    }
+
+    .footer {
+        padding: 5rem 1.5rem 1.2rem;
+    }
+}
+
+/* ======================================= */
+/* DESKTOP (>=768px)                       */
+/* Photo top-right, bio center-left         */
+/* ======================================= */
+@media (min-width: 768px) {
+    .header {
+        padding: 2.5rem 3rem 0;
+    }
+
+    .main {
+        padding: 0 3rem;
+        position: relative;
+        min-height: 60vh;
+        align-items: center;
+    }
+
+    .bio {
+        padding-top: 0;
+        max-width: 520px;
+        margin-left: 20%;
+    }
+
+    .photo-col {
+        position: absolute;
+        top: -8rem;
+        right: 3rem;
+        width: 280px;
+    }
+
+    .footer {
+        padding: 2rem 3rem 2rem;
+    }
+}
+
+@media (min-width: 1100px) {
+    .photo-col {
+        width: 320px;
+    }
+
+    .bio {
+        margin-left: 24%;
+        max-width: 540px;
+    }
+}
+
+@media (min-width: 1400px) {
+    .header {
+        padding: 2.5rem 4rem 0;
+    }
+
+    .main {
+        padding: 0 4rem;
+    }
+
+    .photo-col {
+        right: 4rem;
+    }
+
+    .footer {
+        padding: 2rem 4rem 2rem;
+    }
 }

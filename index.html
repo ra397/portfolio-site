@@ -1,84 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <!-- Using Font Awesome for icons in contact section -->
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-        <!-- Using Swiper for project carousel -->
-        <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
-        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-        <link rel="stylesheet" href="styles.css" />
-        <!-- Using Iceland Google Font-->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Iceland&display=swap" rel="stylesheet">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="styles.css" rel="stylesheet">
+    <title>Rabi — Software Developer</title>
+</head>
+<body>
+<div class="page">
+    <div class="header">
+        <div class="site-name"><a href="/">Rabi Alaya</a></div>
+        <nav>
+            <a href="/">About</a>
+            <a href="#work">Work</a>
+            <a href="#resume">Resume</a>
+        </nav>
+    </div>
 
-        <title>Rabi Alaya</title>
-    </head>
-    <body>
-        <div id="name-section">
-            <h1>Rabi Alaya</h1>
-            <h2>Software Developer</h2>
+    <div class="main">
+        <div class="bio">
+            Hi, I'm Rabi, a software developer at the Iowa Flood Center. I build production geospatial web applications for weather and hydrology research —
+            from GPU-accelerated radar visualization to real-time precipitation data processing.
         </div>
-
-        <div id="navbar">
-            <ul>
-                <li><a href="blog.html">Blog</a></li>
-                <li>
-                    <a href="assets/Rabi_Alaya_Resume.pdf" target="_blank">Resume</a>
-                </li>
-            </ul>
-        </div>
-
-        <div id="about-section">
-            <h2 class="section-title">About Me</h2>
-            <p>
-                I am a senior studying Computer Science and Engineering at the University of Iowa. I'm passionate about building custom software solutions that 
-                drive businesses and research forward. What I love most about computer science is how easy it is to apply what I've learned—anytime, 
-                anywhere. Just open a laptop and start coding. This freedom to experiment is the root of my passion for software development.
+        <div class="photo-col">
+            <img src="assets/portrait.jpeg" alt="At work">
+            <p class="caption">Downtown Chicago. Photo by
+                <a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/yalaya/">Yusef Alaya</a>.
             </p>
         </div>
+    </div>
 
-        <div id="projects-section">
-            <h2 class="section-title">Projects</h2>
-            <div class="swiper-container">
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-wrapper">
-                    <!-- Project 1 -->
-                    <div class="swiper-slide project-card">
-                        <img src="" alt="">
-                        <h3></h3>
-                        <p>
-                            
-                        </p>
-                        <a href="" target="_blank"></a>
-                    </div>
-                </div>
-                <div class="swiper-button-next"></div>
-            </div>
-        </div>
-
-        <div id="contact-section">
-            <h2 class="section-title">Contact Me</h2>
-            <div id="contact-icons-containter">
-                <a href="https://github.com/ra397" target="_blank">
-                    <i class="fab fa-github"></i>
-                    <span>GitHub</span>
-                  </a>
-                  <a href="https://linkedin.com/in/ralaya" target="_blank">
-                    <i class="fab fa-linkedin"></i>
-                    <span>LinkedIn</span>
-                  </a>
-                  <a href="mailto:rabi-alaya@uiowa.edu">
-                    <i class="fas fa-envelope"></i>
-                    <span>Email</span>
-                  </a>
-            </div>
-        </div>
-
-
-        <script src="swiper.js"></script>
-    </body>
+    <footer class="footer">
+        <span class="footer-email"><a href="mailto:rabialaya@gmail.com">rabialaya@gmail.com</a></span>
+        <span class="footer-email"><a href="github.com/ra397">GitHub</a></span>
+<!--        <button class="dots-btn" aria-label="More options">-->
+<!--            <svg viewBox="0 0 24 24"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>-->
+<!--        </button>-->
+    </footer>
+</div>
+</body>
 </html>
