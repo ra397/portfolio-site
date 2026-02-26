@@ -6,6 +6,9 @@
     <link rel="icon" type="image/png" href="/assets/favicon.svg">
     <link href="../../styles.css" rel="stylesheet" type="text/css">
     <link href="/blog/blog-post.css" rel="stylesheet" type="text/css">
+    <link href="/blog/reusable-google-maps-ui-components/reusable-google-maps-ui-components.css" rel="stylesheet" type="text/css">
+    <link href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-tomorrow.css" rel="stylesheet" />
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTYZ2ogy4XY8GmiIpiw89OpE9iRk5MnxM&libraries=marker"></script>
     <title>Reusable Google Maps UI Components — Blog</title>
 </head>
 <body>
@@ -22,20 +25,37 @@
     <div class="post">
         <span class="post-back"><a href="/blog">← Back to blog</a></span>
         <div class="post-header">
-            <h1 class="post-title">Post Title Here</h1>
+            <h1 class="post-title">The Google Maps Toolkit I Wish I Had When I Started</h1>
             <div class="post-date">February 25, 2026</div>
         </div>
         <div class="post-body">
-            <p>This is the opening paragraph of your blog post. Set the scene, introduce the problem, or hook the reader with something interesting. Keep it natural — this is your voice.</p>
+            <p>
+                If you've built more than one app using the Google Maps JavaScript API, you probably quickly noticed yourself writing the same
+                boilerplate code again and again. Initialize the map, add overlays, figuring out why adding markers makes your whole interface lag.
+                This post is a compilation of reusable UI components that make developing applications using the Google Maps API quicker, so you can
+                shift your focus from boilerplate to problem-solving.
+            </p>
 
-            <p>Second paragraph goes deeper. Maybe you're explaining a technical challenge you ran into, or describing the approach you took to solve something. Links look <a href="#">like this</a> and blend right in with the monospace aesthetic.</p>
+            <span><b>CustomOverlay</b></span>
+            <p>
+                <span class="inline-code">CustomOverlay</span> is used for overlaying arbitrary images on the map.
+                You give it the image source and geographic bounds, and it handles the rest: positioning, reprojecting on
+                zooming and panning. <span class="inline-code">CustomOverlay</span> extends the
+                <span class="inline-code"><a href="https://developers.google.com/maps/documentation/javascript/customoverlays" target="_blank">OverlayView</a></span>
+                class provided by Google.
+            </p>
 
-            <img src="https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=800&q=80" alt="Description of image">
-            <p class="img-caption">Caption describing what's in the image above.</p>
+            <p>
+                Here is a fun example using <span class="inline-code">CustomOverlay</span> to overlay an image of a cat over the State of Iowa:
+                <ol>
+                    <li>To be continued ...</li>
+                </ol>
 
-            <p>Continue your narrative after the image. The images break up the text nicely and give the reader something to anchor on. You can have as many or as few as you want.</p>
+            </p>
 
-            <p>Wrap it up with a closing thought, a takeaway, or what you're working on next.</p>
+            <div id="customOverlayMap"></div>
+
+
         </div>
     </div>
 
@@ -44,5 +64,9 @@
         <span class="footer-item"><a target="_blank" rel="noopener noreferrer" href="https://github.com/ra397">GitHub</a></span>
     </footer>
 </div>
+
+<script src="reusable-google-maps-ui-components.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs/prism.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-javascript.min.js"></script>
 </body>
 </html>

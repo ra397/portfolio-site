@@ -41,11 +41,6 @@
     margin-bottom: 1.4rem;
 }
 
-.post-body a {
-    text-decoration: underline;
-    text-underline-offset: 2px;
-}
-
 .post-body a:hover {
     opacity: 0.4;
 }
@@ -63,6 +58,20 @@
     margin-top: -1.5rem;
     margin-bottom: 1.5rem;
     line-height: 1.5;
+}
+
+.inline-code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.9em;
+    background-color: #f3f4f6;
+    color: #1f2937;
+    padding: 0.2em 0.45em;
+    border-radius: 6px;
+    border: 1px solid #e5e7eb;
+}
+
+ol {
+    padding-left: 5ch;
 }
 
 /* ==================== */
