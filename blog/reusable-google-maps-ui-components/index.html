@@ -6,7 +6,6 @@
     <link rel="icon" type="image/png" href="/assets/favicon.svg">
     <link href="../../styles.css" rel="stylesheet" type="text/css">
     <link href="/blog/blog-post.css" rel="stylesheet" type="text/css">
-    <link href="/blog/reusable-google-maps-ui-components/reusable-google-maps-ui-components.css" rel="stylesheet" type="text/css">
     <link href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-tomorrow.css" rel="stylesheet" />
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTYZ2ogy4XY8GmiIpiw89OpE9iRk5MnxM&libraries=marker"></script>
     <title>Reusable Google Maps UI Components — Blog</title>
@@ -31,12 +30,12 @@
         <div class="post-body">
             <p>
                 If you've built more than one app using the Google Maps JavaScript API, you probably quickly noticed yourself writing the same
-                boilerplate code again and again. Initialize the map, add overlays, figuring out why adding markers makes your whole interface lag.
+                boilerplate code over and over. Initialize the map, add overlays, optimize your markers, create legends for you overlays, and so on.
                 This post is a compilation of reusable UI components that make developing applications using the Google Maps API quicker, so you can
                 shift your focus from boilerplate to problem-solving.
             </p>
 
-            <span><b>CustomOverlay</b></span>
+            <span><b>CustomOverlay</b></span> <a href="/blog/reusable-google-maps-ui-components/components/CustomOverlay.js" target="_blank">(Source)</a>
             <p>
                 <span class="inline-code">CustomOverlay</span> is used for overlaying arbitrary images on the map.
                 You give it the image source and geographic bounds, and it handles the rest: positioning, reprojecting on
@@ -46,16 +45,31 @@
             </p>
 
             <p>
-                Here is a fun example using <span class="inline-code">CustomOverlay</span> to overlay an image of a cat over the State of Iowa:
-                <ol>
-                    <li>To be continued ...</li>
-                </ol>
+                Here is an example using <span class="inline-code">CustomOverlay</span> to overlay an image of a cat over the State of Iowa:
+                    <pre><code class="language-javascript">// Load the image
+const img = new Image();
+img.src = "./assets/cat.png";
 
+// Define the geographic bounding box
+const bbox = {
+    "sw": {
+        "lng": -97.688726148,
+        "lat": 40.344952682
+    },
+    "ne": {
+        "lng": -90.217149722,
+        "lat": 43.574378869
+    }
+};
+
+// Initialize
+const overlay = customOverlay(img.src, bbox,
+            customOverlayMap);        </code></pre>
             </p>
 
-            <div id="customOverlayMap"></div>
+            <p>It's that easy.</p>
 
-
+            <div class="map" id="customOverlayMap"></div>
         </div>
     </div>
 
@@ -65,8 +79,9 @@
     </footer>
 </div>
 
-<script src="reusable-google-maps-ui-components.js"></script>
+<script src="./components/CustomOverlay.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-javascript.min.js"></script>
+<script src="reusable-google-maps-ui-components.js"></script>
 </body>
 </html>
