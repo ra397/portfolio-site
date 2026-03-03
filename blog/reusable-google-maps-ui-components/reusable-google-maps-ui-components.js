@@ -83,25 +83,21 @@ async function loadMarkerCollectionDemo() {
 async function loadTooltipDemo() {
     const map = createDemoMap("tooltipMap");
     const markers = await createCollegeMarkers(map);
-    const tooltips = new Map();
+    let tooltip = null;
 
     markers.onClick(function (marker) {
         const lat = marker.marker.position.lat();
         const lng = marker.marker.position.lng();
-        const key = `${lat},${lng}`;
 
-        if (tooltips.has(key)) {
-            tooltips.get(key).destroy();
-            tooltips.delete(key);
-            return;
+        if (tooltip !== null) {
+            tooltip.destroy();
+            tooltip = null;
         }
 
-        const tooltip = new Tooltip({ lat, lng }, marker.properties.name, map, () => {
+        tooltip = new Tooltip({ lat, lng }, marker.properties.name, map, () => {
             tooltip.destroy();
-            tooltips.delete(key);
+            tooltip = null;
         });
-
-        tooltips.set(key, tooltip);
     });
 }
 

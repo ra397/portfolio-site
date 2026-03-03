@@ -164,34 +164,25 @@ markers.onClick(function (marker) {
                 add a tooltip with the name of the college when the marker is clicked. You can also add tooltips to your vector and raster layers as well.
             </p>
 
-            <pre><code class="language-javascript">const tooltips = new Map();
-// Change the onclick callback to toggle tooltips
+            <pre><code class="language-javascript">let tooltip = null;
+
 markers.onClick(function (marker) {
     const lat = marker.marker.position.lat();
     const lng = marker.marker.position.lng();
 
-    const key = `${lat},${lng}`;
-
-    if (tooltips.has(key)) { // the tooltip is already open
-        const tooltip = tooltips.get(key);
+    if (tooltip !== null) {
         tooltip.destroy();
-        tooltips.delete(key);
-        return;
+        tooltip = null;
     }
 
-    const tooltip = new Tooltip({lat, lng}, marker.properties.name, map,
-        /* callback defining what happens when the X is clicked on the tooltip */
-        () => {
+    tooltip = new Tooltip({ lat, lng }, marker.properties.name, map, () => {
         tooltip.destroy();
-        tooltips.delete(key);
+        tooltip = null;
     });
-
-    tooltips.set(key, tooltip);
 });</code></pre>
 
             <p>
-                We created a Map of tooltips. The key is the lat/lng. If a marker with a tooltip already open is clicked, we close it. Otherwise,
-                we create a new tooltip with the content being the name of the college. Try it and click on a marker:
+                Try it and click on a marker:
             </p>
 
             <div class="map" id="tooltipMap"></div>
