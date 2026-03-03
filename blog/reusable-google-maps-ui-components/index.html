@@ -30,7 +30,7 @@
         <div class="post-body">
             <p>
                 If you've built more than one app using the Google Maps JavaScript API, you probably quickly noticed yourself writing the same
-                boilerplate code over and over. Initialize the map, add overlays, optimize your markers, create legends for you overlays, and so on.
+                boilerplate code over and over. Initialize the map, add overlays, optimize your markers, and so on.
                 This post is a compilation of reusable UI components that make developing applications using the Google Maps API quicker, so you can
                 shift your focus from boilerplate to problem-solving.
             </p>
@@ -38,8 +38,7 @@
             <span><b>CustomOverlay</b></span> <a href="/blog/reusable-google-maps-ui-components/components/CustomOverlay.js" target="_blank">(Source)</a>
             <p>
                 <span class="inline-code">CustomOverlay</span> is used for overlaying arbitrary images on the map.
-                You give it the image source and geographic bounds, and it handles the rest: positioning, reprojecting on
-                zooming and panning. <span class="inline-code">CustomOverlay</span> extends the
+                You give it the image source and geographic bounds, and it handles the rest: positioning and reprojection on zoom and pan. <span class="inline-code">CustomOverlay</span> extends the
                 <span class="inline-code"><a href="https://developers.google.com/maps/documentation/javascript/customoverlays" target="_blank">OverlayView</a></span>
                 class provided by Google.
             </p>
@@ -75,14 +74,8 @@ const overlay = customOverlay(img.src, bbox, map);</code></pre>
             <p>Most likely, you won't be overlaying pictures of cats for work (and if you do, then please reach out, I would love to work with you), but you will have to generate images using
             real world data. This is where <span class="inline-code">RasterGenerator</span> comes in.</p>
 
-            <p>To generate an image using <span class="inline-code">RasterGenerator</span> you need:
-                <ol>
-                    <li><p>1D representation of you 2D spatial data. Being a performance geek, I designed <span class="inline-code">RasterGenerator</span> to use 1D arrays, as
-                        looping through them is faster than iterating through 2D arrays.</p></li>
-                    <li><p>The width, so we know how to represent the data in 2D.</p></li>
-                    <li><p>A color map, mapping value intervals to a specific RGBA value.</p></li>
-                </ol>
-            <p></p>
+            <p>To generate an image using <span class="inline-code">RasterGenerator</span> you need a 1D array of your spatial data,
+            the grid width, and a color map.
             <p>
                     Internally, <span class="inline-code">RasterGenerator</span> uses <span class="inline-code"><a href="https://developer.mozilla.org/en-US/docs/Web/API/OffscreenCanvas" target="_blank">OffscreenCanvas</a></span>
                     to create the image. The benefits of using <span class="inline-code">OffscreenCanvas</span> are that it is completely decoupled from the DOM (you don't need to pollute
@@ -128,10 +121,9 @@ overlay.setOpacity(0.7);
             <p>The result:</p>
             <div class="map" id="rasterGeneratorMap"></div>
 
-
             <p></p>
             <span><b>MarkerCollection</b></span> <a href="/blog/reusable-google-maps-ui-components/components/MarkerCollection.js" target="_blank">(Source)</a>
-            <p><span class="inline-code">MarkerCollection</span> is used to display a collection of markers on the map (DUH!). You can attach properties to each marker.
+            <p><span class="inline-code">MarkerCollection</span> is used to display a collection of markers on the map. You can attach properties to each marker.
             You can also register a callback to handle the markers being clicked. Although deprecated, <span class="inline-code">MarkerCollection</span> utilizes
             Google's <span class="inline-code"><a href="https://developers.google.com/maps/documentation/javascript/markers" target="_blank">Marker</a></span>
                 instead of <span class="inline-code"><a href="https://developers.google.com/maps/documentation/javascript/reference/advanced-markers" target="_blank">AdvancedMarkerElement</a></span>
@@ -140,11 +132,80 @@ overlay.setOpacity(0.7);
             </p>
 
             <p>I will plot a marker for every college in the United States:</p>
-            <pre><code class="language-javascript">// MarkerCollection exmaple code</code></pre>
+            <pre><code class="language-javascript">const colleges = await fetch("./assets/usa_colleges.json")
+                .then(r => r.json());
+const markers = new MarkerCollection(map);
+for (const college of colleges) {
+    const [lat, lng, name] = college;
+    markers.add(lat, lng, { name });
+}
+markers.setColor("red");
+markers.setSize(2.5);
+// Add an on click callback to the markers
+markers.onClick(function (marker) {
+    console.log(marker.properties.name);
+});</code></pre>
 
 
             <p>We just plotted over 6,000 markers. Test by zooming and panning, and see how smooth it is ;)</p>
             <div class="map" id="markersMap"></div>
+
+
+            <p></p>
+            <span><b>Tooltip</b></span> <a href="/blog/reusable-google-maps-ui-components/components/Tooltip.js" target="_blank">(Source)</a>
+            <p>
+                <span class="inline-code">Tooltip</span> is used to add a geographically fixed informational window on the map.
+                <span class="inline-code">Tooltip</span> is lightweight and more visually appealing than Google Maps
+                <span class="inline-code"><a href="https://developers.google.com/maps/documentation/javascript/reference/info-window" target="_blank">Info Window</a></span>.
+            </p>
+
+            <p>
+                For this example, instead of logging the name of each college to the console (like I did in the previous example), I will
+                add a tooltip with the name of the college when the marker is clicked. You can also add tooltips to your vector and raster layers as well.
+            </p>
+
+            <pre><code class="language-javascript">const tooltips = new Map();
+// Change the onclick callback to toggle tooltips
+markers.onClick(function (marker) {
+    const lat = marker.marker.position.lat();
+    const lng = marker.marker.position.lng();
+
+    const key = `${lat},${lng}`;
+
+    if (tooltips.has(key)) { // the tooltip is already open
+        const tooltip = tooltips.get(key);
+        tooltip.destroy();
+        tooltips.delete(key);
+        return;
+    }
+
+    const tooltip = new Tooltip({lat, lng}, marker.properties.name, map,
+        /* callback defining what happens when the X is clicked on the tooltip */
+        () => {
+        tooltip.destroy();
+        tooltips.delete(key);
+    });
+
+    tooltips.set(key, tooltip);
+});</code></pre>
+
+            <p>
+                We created a Map of tooltips. The key is the lat/lng. If a marker with a tooltip already open is clicked, we close it. Otherwise,
+                we create a new tooltip with the content being the name of the college. Try it and click on a marker:
+            </p>
+
+            <div class="map" id="tooltipMap"></div>
+
+            <p></p>
+            <p>
+                These four components:
+                <span class="inline-code">CustomOverlay</span>,
+                <span class="inline-code">RasterGenerator</span>,
+                <span class="inline-code">MarkerCollection</span>,
+                and <span class="inline-code">Tooltip</span> are ones I find myself reaching for in basically every project.
+                None of them are groundbreaking, but having them ready to go means less time fighting with the API and more time focusing on the actual problem.
+                If you end up using any of these, or have ideas for improvements, shoot me an email.
+            </p>
         </div>
     </div>
 
@@ -157,6 +218,7 @@ overlay.setOpacity(0.7);
 <script src="./components/CustomOverlay.js"></script>
 <script src="./components/RasterGenerator.js"></script>
 <script src="./components/MarkerCollection.js"></script>
+<script src="./components/Tooltip.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-javascript.min.js"></script>
 <script src="reusable-google-maps-ui-components.js"></script>
