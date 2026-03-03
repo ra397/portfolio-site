@@ -46,6 +46,7 @@
 
             <p>
                 Here is an example using <span class="inline-code">CustomOverlay</span> to overlay an image of a cat over the State of Iowa:
+            </p>
                     <pre><code class="language-javascript">// Load the image
 const img = new Image();
 img.src = "./assets/cat.png";
@@ -63,13 +64,70 @@ const bbox = {
 };
 
 // Initialize
-const overlay = customOverlay(img.src, bbox,
-            customOverlayMap);        </code></pre>
-            </p>
+const overlay = customOverlay(img.src, bbox, map);</code></pre>
 
             <p>It's that easy.</p>
-
             <div class="map" id="customOverlayMap"></div>
+
+
+            <p></p>
+            <span><b>RasterGenerator</b></span> <a href="/blog/reusable-google-maps-ui-components/components/RasterGenerator.js" target="_blank">(Source)</a>
+            <p>Most likely, you won't be overlaying pictures of cats for work (and if you do, then please reach out, I would love to work with you), but you will have to generate images using
+            real world data. This is where <span class="inline-code">RasterGenerator</span> comes in.</p>
+
+            <p>To generate an image using <span class="inline-code">RasterGenerator</span> you need:
+                <ol>
+                    <li><p>1D representation of you 2D spatial data. Being a performance geek, I designed <span class="inline-code">RasterGenerator</span> to use 1D arrays, as
+                        looping through them is faster than iterating through 2D arrays.</p></li>
+                    <li><p>The width, so we know how to represent the data in 2D.</p></li>
+                    <li><p>A color map, mapping value intervals to a specific RGBA value.</p></li>
+                </ol>
+            <p></p>
+            <p>
+                    Internally, <span class="inline-code">RasterGenerator</span> uses <span class="inline-code"><a href="https://developer.mozilla.org/en-US/docs/Web/API/OffscreenCanvas" target="_blank">OffscreenCanvas</a></span>
+                    to create the image. The benefits of using <span class="inline-code">OffscreenCanvas</span> are that it is completely decoupled from the DOM (you don't need to pollute
+                    your HTML with a <span class="inline-code">&lt;canvas&gt;</span> element) and rendering operations run inside a <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers" target="_blank">Web Worker</a>
+                    context (outside the main thread) preventing overhead on the main application.
+            </p>
+
+            <p>Here is an example generating a population heatmap and overlaying it over the United States:</p>
+            <pre><code class="language-javascript">// Build the color map
+const colorMap = [
+    { min: 0,     max: 1,      rgba: [0, 0, 0, 0] },            // No population - transparent
+    { min: 1,     max: 10,     rgba: [255, 255, 212, 255] },    // Pale yellow
+    { min: 10,    max: 50,     rgba: [254, 240, 178, 255] },    // Light yellow
+    { min: 50,    max: 100,    rgba: [254, 217, 142, 255] },    // Yellow-orange
+    { min: 100,   max: 250,    rgba: [253, 187, 104, 255] },    // Light orange
+    { min: 250,   max: 500,    rgba: [253, 141, 60, 255] },     // Orange
+    { min: 500,   max: 1000,   rgba: [252, 78, 42, 255] },      // Red-orange
+    { min: 1000,  max: 2500,   rgba: [227, 26, 28, 255] },      // Red
+    { min: 2500,  max: 5000,   rgba: [189, 0, 38, 255] },       // Dark red
+    { min: 5000,  max: 10000,  rgba: [143, 0, 51, 255] },       // Crimson
+    { min: 10000, max: 25000,  rgba: [103, 0, 61, 255] },       // Dark magenta
+    { min: 25000, max: 55001,  rgba: [63, 0, 60, 255] },        // Deep purple-black
+];
+
+// Instantiate RasterGenerator and generate an image url
+const image = new RasterGenerator(populationArray1D, width, populationArray.length / width, colorMap);
+const imageUrl = await image.generateUrl();
+
+// We can use the earlier example of customOverlay to put this image on the map
+const bbox = {
+    "sw": {
+        "lng": -126.672711178,
+        "lat": 19.804486768
+    },
+    "ne": {
+        "lng": -65.939069416,
+        "lat": 56.942856349
+    }
+};
+const overlay = customOverlay(imageUrl, bbox, map);
+overlay.setOpacity(0.7);
+</code></pre>
+            <p>The result:</p>
+            <div class="map" id="rasterGeneratorMap"></div>
+
         </div>
     </div>
 
@@ -80,6 +138,7 @@ const overlay = customOverlay(img.src, bbox,
 </div>
 
 <script src="./components/CustomOverlay.js"></script>
+<script src="./components/RasterGenerator.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-javascript.min.js"></script>
 <script src="reusable-google-maps-ui-components.js"></script>
