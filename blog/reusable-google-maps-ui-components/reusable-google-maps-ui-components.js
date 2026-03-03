@@ -34,7 +34,7 @@ const rasterGeneratorMap = new google.maps.Map(document.getElementById("rasterGe
     disableDefaultUI: true,
 });
 
-async function loadPopData() {
+async function loadAndDisplayPopulationRaster() {
     const  { data, width, dtype } = await fetch('./assets/usa_pop.json').then(r => r.json());
     const bytes = Uint8Array.from(atob(data), c => c.charCodeAt(0));
     const populationArray = new Uint16Array(bytes.buffer);
@@ -69,4 +69,27 @@ async function loadPopData() {
     overlay.setOpacity(0.7);
 }
 
-loadPopData();
+loadAndDisplayPopulationRaster();
+
+// MarkerCollection Demo
+async function loadAndDisplayCollegeMarkers() {
+    const markersMap = new google.maps.Map(document.getElementById("markersMap"), {
+        center: {lat: 38.66952840280871, lng: -96.19290823947766},
+        zoom: 4,
+        minZoom: 3,
+        maxZoom: 12,
+        clickableIcons: false,
+        disableDefaultUI: true,
+    });
+
+    const collegesData = await fetch("./assets/usa_colleges.json").then(r => r.json());
+    const markers = new MarkerCollection(markersMap);
+    for (const college of collegesData) {
+        const [lat, lng, name] = college;
+        markers.add(lat, lng, { name });
+    }
+    markers.setColor("red");
+    markers.setSize(2.5);
+}
+
+loadAndDisplayCollegeMarkers();

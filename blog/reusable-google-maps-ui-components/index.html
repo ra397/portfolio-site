@@ -128,6 +128,23 @@ overlay.setOpacity(0.7);
             <p>The result:</p>
             <div class="map" id="rasterGeneratorMap"></div>
 
+
+            <p></p>
+            <span><b>MarkerCollection</b></span> <a href="/blog/reusable-google-maps-ui-components/components/MarkerCollection.js" target="_blank">(Source)</a>
+            <p><span class="inline-code">MarkerCollection</span> is used to display a collection of markers on the map (DUH!). You can attach properties to each marker.
+            You can also register a callback to handle the markers being clicked. Although deprecated, <span class="inline-code">MarkerCollection</span> utilizes
+            Google's <span class="inline-code"><a href="https://developers.google.com/maps/documentation/javascript/markers" target="_blank">Marker</a></span>
+                instead of <span class="inline-code"><a href="https://developers.google.com/maps/documentation/javascript/reference/advanced-markers" target="_blank">AdvancedMarkerElement</a></span>
+                as they are more performant. Legacy Markers are rendered directly onto the map's internal canvas, whereas AdvancedMarkerElements each create a separate DOM element.
+                Using Markers, we avoid the overhead of managing thousands of separate DOM elements. The difference in performance is significant.
+            </p>
+
+            <p>I will plot a marker for every college in the United States:</p>
+            <pre><code class="language-javascript">// MarkerCollection exmaple code</code></pre>
+
+
+            <p>We just plotted over 6,000 markers. Test by zooming and panning, and see how smooth it is ;)</p>
+            <div class="map" id="markersMap"></div>
         </div>
     </div>
 
@@ -139,6 +156,7 @@ overlay.setOpacity(0.7);
 
 <script src="./components/CustomOverlay.js"></script>
 <script src="./components/RasterGenerator.js"></script>
+<script src="./components/MarkerCollection.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-javascript.min.js"></script>
 <script src="reusable-google-maps-ui-components.js"></script>
