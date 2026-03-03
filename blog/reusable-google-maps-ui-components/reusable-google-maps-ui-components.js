@@ -105,7 +105,20 @@ async function loadTooltipDemo() {
     });
 }
 
+// Info Window Demo
+async function loadInfoWindowDemo() {
+    const map = createDemoMap("infoWindowMap");
+    const markers = await createCollegeMarkers(map);
+    const infoWindow = new google.maps.InfoWindow();
+
+    markers.onClick(function (marker) {
+        infoWindow.setContent(`<div style="font-size:13px;padding:2px 0;">${marker.properties.name}</div>`);
+        infoWindow.open(map, marker.marker);
+    });
+}
+
 loadCustomOverlayDemo();
 loadRasterGeneratorDemo();
 loadMarkerCollectionDemo();
+loadInfoWindowDemo();
 loadTooltipDemo();

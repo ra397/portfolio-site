@@ -29,16 +29,15 @@
         </div>
         <div class="post-body">
             <p>
-                If you've built more than one app using the Google Maps JavaScript API, you probably quickly noticed yourself writing the same
-                boilerplate code over and over. Initialize the map, add overlays, optimize your markers, and so on.
-                This post is a compilation of reusable UI components that make developing applications using the Google Maps API quicker, so you can
-                shift your focus from boilerplate to problem-solving.
+                Every geospatial web app I've built has the same foundation: context layers that exist before the user does anything.
+                Stream gauges, basin boundaries, precipitation grids. By the time I was building my third one, I noticed I was copy-pasting
+                the same boilerplate over and over. So I cleaned them up, optimized them, and I'm sharing them here.
             </p>
 
             <span><b>CustomOverlay</b></span> <a href="/blog/reusable-google-maps-ui-components/components/CustomOverlay.js" target="_blank">(Source)</a>
             <p>
                 <span class="inline-code">CustomOverlay</span> is used for overlaying arbitrary images on the map.
-                You give it the image source and geographic bounds, and it handles the rest: positioning and reprojection on zoom and pan. <span class="inline-code">CustomOverlay</span> extends the
+                You give it the image source and geographic bounds, and it handles positioning and reprojection on zoom and pan. <span class="inline-code">CustomOverlay</span> extends the
                 <span class="inline-code"><a href="https://developers.google.com/maps/documentation/javascript/customoverlays" target="_blank">OverlayView</a></span>
                 class provided by Google.
             </p>
@@ -74,7 +73,8 @@ const overlay = customOverlay(img.src, bbox, map);</code></pre>
             <p>Most likely, you won't be overlaying pictures of cats for work (and if you do, then please reach out, I would love to work with you), but you will have to generate images using
             real world data. This is where <span class="inline-code">RasterGenerator</span> comes in.</p>
 
-            <p>To generate an image using <span class="inline-code">RasterGenerator</span> you need a 1D array of your spatial data,
+            <p>To generate an image using <span class="inline-code">RasterGenerator</span> you need a 1D array of your spatial data
+                (being a performance geek, I use 1D over 2D arrays since iterating through them is faster),
             the grid width, and a color map.
             <p>
                     Internally, <span class="inline-code">RasterGenerator</span> uses <span class="inline-code"><a href="https://developer.mozilla.org/en-US/docs/Web/API/OffscreenCanvas" target="_blank">OffscreenCanvas</a></span>
@@ -123,12 +123,12 @@ overlay.setOpacity(0.7);
 
             <p></p>
             <span><b>MarkerCollection</b></span> <a href="/blog/reusable-google-maps-ui-components/components/MarkerCollection.js" target="_blank">(Source)</a>
-            <p><span class="inline-code">MarkerCollection</span> is used to display a collection of markers on the map. You can attach properties to each marker.
-            You can also register a callback to handle the markers being clicked. Although deprecated, <span class="inline-code">MarkerCollection</span> utilizes
+            <p><span class="inline-code">MarkerCollection</span> manages a collection of markers, but the interesting part is how it stays performant at scale and why that required ditching Google's recommended API.
+             Although deprecated, <span class="inline-code">MarkerCollection</span> utilizes
             Google's <span class="inline-code"><a href="https://developers.google.com/maps/documentation/javascript/markers" target="_blank">Marker</a></span>
                 instead of <span class="inline-code"><a href="https://developers.google.com/maps/documentation/javascript/reference/advanced-markers" target="_blank">AdvancedMarkerElement</a></span>
                 as they are more performant. Legacy Markers are rendered directly onto the map's internal canvas, whereas AdvancedMarkerElements each create a separate DOM element.
-                Using Markers, we avoid the overhead of managing thousands of separate DOM elements. The difference in performance is significant.
+                Using Markers, we avoid the overhead of managing thousands of separate DOM elements. You can attach properties to each marker and register a click callback.
             </p>
 
             <p>I will plot a marker for every college in the United States:</p>
@@ -155,8 +155,8 @@ markers.onClick(function (marker) {
             <span><b>Tooltip</b></span> <a href="/blog/reusable-google-maps-ui-components/components/Tooltip.js" target="_blank">(Source)</a>
             <p>
                 <span class="inline-code">Tooltip</span> is used to add a geographically fixed informational window on the map.
-                <span class="inline-code">Tooltip</span> is lightweight and more visually appealing than Google Maps
-                <span class="inline-code"><a href="https://developers.google.com/maps/documentation/javascript/reference/info-window" target="_blank">Info Window</a></span>.
+                It's lightweight and more visually appealing than Google Maps
+                <span class="inline-code"><a href="https://developers.google.com/maps/documentation/javascript/infowindows" target="_blank">Info Window</a></span>.
             </p>
 
             <p>
@@ -198,12 +198,19 @@ markers.onClick(function (marker) {
 
             <p></p>
             <p>
+                Compare it to Google's bulky <span class="inline-code">Info Window</span>. It gets the jobs done,
+                but good luck customizing it:
+            </p>
+            <div class="map" id="infoWindowMap"></div>
+
+            <p></p>
+            <p>
                 These four components:
                 <span class="inline-code">CustomOverlay</span>,
                 <span class="inline-code">RasterGenerator</span>,
                 <span class="inline-code">MarkerCollection</span>,
                 and <span class="inline-code">Tooltip</span> are ones I find myself reaching for in basically every project.
-                None of them are groundbreaking, but having them ready to go means less time fighting with the API and more time focusing on the actual problem.
+                None of them are groundbreaking, but having them ready to go means less time fighting with the API and more time on the actual problem.
                 If you end up using any of these, or have ideas for improvements, shoot me an email.
             </p>
         </div>
